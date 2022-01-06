@@ -1,0 +1,254 @@
+/* Start Global Rules */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Oswald", sans-serif;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+a {
+  text-decoration: none;
+}
+/* End Global Rules */
+/* Start media query */
+@media (max-width: 575px) {
+  /* extra Small Screen Rules  */
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  /* Small Screen Rules  */
+  .container {
+    width: 540px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Medium Screen Rules  */
+  .container {
+    width: 720px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1999px) {
+  /* Large Screen Rules  */
+  .container {
+    width: 960px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  /* X-Large Screen Rules  */
+  .container {
+    width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  /* X-Large Screen Rules  */
+  .container {
+    width: 1320px;
+  }
+}
+/* End  media query */
+
+/* Start header */
+header nav {
+  background-color: #333333;
+  padding: 10px;
+}
+header nav .nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+@media (max-width: 575px) {
+  header nav .nav-content {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+header nav .logo a {
+  color: #fff;
+  font-size: 30px;
+}
+header nav .sign {
+  display: flex;
+  gap: 20px;
+}
+header nav .user-logout {
+  display: none;
+  gap: 20px;
+}
+header nav .sign a,
+header nav .user-logout a {
+  color: #fff;
+  font-size: 20px;
+}
+/* End header */
+
+/* Start Form */
+
+.form-content {
+  position: relative;
+  background-color: #ccc;
+  width: 50%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: 50px auto;
+}
+.form-content h2 {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 15px;
+  font-size: 30px;
+  color: #333333;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+@media (max-width: 767px) {
+  .form-content {
+    width: 90%;
+  }
+}
+
+form input,
+form button {
+  border: none;
+  width: 80%;
+  padding: 15px 10px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  font-family: "Oswald", sans-serif;
+}
+form input {
+  margin: 20px 0;
+  outline: none;
+}
+
+form button {
+  font-size: 25px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+form button:hover {
+  background-color: #333;
+  color: #fff;
+}
+form .to-sign {
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.form-content .alert {
+  background-color: #dc3545;
+  font-size: 25px;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: -10%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  width: 80%;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  display: none;
+}
+/* End Form */
+
+/* Start shopping cart section */
+.shopping-cart input[type="search"] {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  margin: 25px 0;
+}
+
+.shopping-cart .products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 30px;
+}
+
+.products .products-container .product-item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  height: 140px;
+  margin-bottom: 20px;
+}
+.products .product-item img {
+  width: 150px;
+  margin-right: 10px;
+  position: relative;
+}
+.products .product-item .product-info {
+  flex: 1;
+}
+.products .product-item .add-to-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.products .add-to-cart button {
+  border: none;
+  background-color: #266403;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+.products .add-to-cart i {
+  cursor: pointer;
+}
+.products .products-filter {
+  margin-bottom: 30px;
+}
+@media (max-width: 1050px) {
+  .products .products-filter {
+    order: -1;
+  }
+}
+.products .products-filter h3 {
+  font-size: 30px;
+}
+.products .products-filter select {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 0;
+  outline: none;
+}
+
+/* End shopping cart section */
