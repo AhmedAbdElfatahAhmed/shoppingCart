@@ -16,6 +16,7 @@ a {
   text-decoration: none;
 }
 /* End Global Rules */
+
 /* Start media query */
 @media (max-width: 575px) {
   /* extra Small Screen Rules  */
@@ -193,15 +194,17 @@ form .to-sign {
   width: 100%;
   outline: none;
   padding: 10px;
-  margin: 25px 0;
+  margin: 30px 0;
 }
 
 .shopping-cart .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  gap: 30px;
+  display: flex;
 }
-
+@media (max-width: 1050px) {
+  .shopping-cart .products {
+    flex-direction: column;
+  }
+}
 .products .products-container .product-item {
   display: flex;
   justify-content: space-between;
@@ -216,6 +219,13 @@ form .to-sign {
 }
 .products .product-item .product-info {
   flex: 1;
+}
+.products .product-info h3 {
+  margin-top: 8px;
+}
+.products .product-info p {
+  margin: 12px 0;
+  line-height: 1.5;
 }
 .products .product-item .add-to-cart {
   display: flex;
@@ -232,13 +242,17 @@ form .to-sign {
 }
 .products .add-to-cart i {
   cursor: pointer;
+  padding: 5px;
 }
 .products .products-filter {
-  margin-bottom: 30px;
+  flex: 1;
+  margin-left: 30px;
 }
 @media (max-width: 1050px) {
   .products .products-filter {
     order: -1;
+    margin-bottom: 20px;
+    margin-left: 0;
   }
 }
 .products .products-filter h3 {
@@ -250,5 +264,15 @@ form .to-sign {
   padding: 10px 0;
   outline: none;
 }
-
+@media (max-width: 575px) {
+  .products .product-item img {
+    width: 120px;
+  }
+  .products .product-item .product-info p {
+    font-size: 14px;
+  }
+  .products .add-to-cart button {
+    padding: 5px;
+  }
+}
 /* End shopping cart section */
