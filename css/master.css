@@ -279,8 +279,7 @@ form .to-sign {
   margin: 20px auto;
 }
 /* Start cart products as no product */
-.products-container .no-products
-{
+.products-container .no-products {
   color: #fff;
   background-color: #dc3545;
   font-size: 30px;
@@ -302,8 +301,17 @@ form .to-sign {
 .products .product-item .product-info {
   flex: 1;
 }
+.products .product-info a {
+  display: block;
+  margin-top: 8px;
+  color: green;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: underline;
+}
 .products .product-info h3 {
   margin-top: 8px;
+  font-size: 22px;
 }
 .products .product-info p {
   margin: 12px 0;
@@ -358,8 +366,28 @@ form .to-sign {
   }
 }
 
-
-
-
-
 /* End shopping cart section */
+
+/* Start product Details */
+.product-Details img {
+  display: block;
+  width: 350px;
+  margin: 10px auto;
+  box-shadow: 1px 1px 5px #333;
+
+}
+.product-Details .product-info {
+  text-align: center;
+}
+.product-Details .product-info h3{
+  font-size: 35px;
+}
+
+.product-Details .product-info p{
+  font-size: 25px;
+  margin: 2px 0;
+}
+.product-Details .product-info .size {
+  font-size: 25px;
+}
+/* End product Details */

@@ -5,14 +5,14 @@ const cartProductElm = document.querySelector(".carts-products .product");
 const productsContainerElm = document.querySelector(
   ".shopping-cart .products-container"
 );
-
+let products = JSON.parse(localStorage.getItem("products"));
 // invoked function to display product
 (function drawProductUI() {
   let produceUI = products.map((productItem) => {
     return ` <div class="product-item">
     <img src="${productItem.imgUrl}" alt="" />
     <div class="product-info">
-      <h3>${productItem.productName}</h3>
+      <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${productItem.productName}</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
     </div>
@@ -99,5 +99,8 @@ function notRepeate(id) {
   }
 }
 
+function saveProductData(id) {
+  localStorage.setItem("productID", id);
+}
 
 // bug in line 60

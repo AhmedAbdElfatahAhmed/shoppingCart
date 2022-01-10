@@ -1,4 +1,4 @@
-let products = [
+let productsDB = [
   {
     id: 1,
     imgUrl: "images/watch.jpg",
@@ -28,3 +28,5 @@ let products = [
     size: "small",
   },
 ];
+
+localStorage.setItem("products", JSON.stringify(productsDB));
