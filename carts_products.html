@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <title>Shopping Cart</title>
+    <title>Carts products</title>
   </head>
   <body>
     <header>
@@ -31,10 +31,10 @@
             <div class="user-info">
               <a class="user-name" href="#"></a>
               <i class="fas fa-shopping-cart">
-                <span class="badge"></span>
+                <span class="badge">0</span>
                 <div class="carts-products">
-                  <div class="product"></div>
-                  <a href="carts_products.html">view All products</a>
+                  <div class="product">item</div>
+                  <a href="">view All products</a>
                 </div>
               </i>
               <a class="log-out" href="register.html">Log Out</a>
@@ -43,26 +43,14 @@
         </div>
       </nav>
     </header>
-    <section class="shopping-cart">
-      <div class="container">
-        <input type="search" placeholder="Search By name" />
-        <div class="products">
-          <div class="products-container"></div>
-          <div class="products-filter">
-            <h3>Filter By Size:</h3>
-            <select>
-              <option value="all" hidden>Filter By Size</option>
-              <option value="all">All</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </section>
+
+    <div class="products">
+      <div class="products-container"></div>
+    </div>
     <script src="js/user.js"></script>
     <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/carts.js"></script>
   </body>
 </html>
+
+

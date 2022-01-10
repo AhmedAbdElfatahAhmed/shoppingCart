@@ -86,14 +86,76 @@ header nav .sign {
   display: flex;
   gap: 20px;
 }
-header nav .user-logout {
+header nav .user-info {
   display: none;
+  align-items: center;
   gap: 20px;
 }
 header nav .sign a,
-header nav .user-logout a {
+header nav .user-info a {
   color: #fff;
   font-size: 20px;
+}
+header nav .user-info i {
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+}
+header nav .user-info .badge {
+  position: absolute;
+  display: inline-block;
+  top: -10px;
+  left: 13px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: red;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  display: none;
+  user-select: none;
+}
+
+header nav .user-info .carts-products {
+  position: absolute;
+  top: 42px;
+  right: -80px;
+  text-align: center;
+  color: #fff;
+  width: 170px;
+  border: 1px solid #fff;
+  background-color: #333;
+  display: none;
+}
+/* header nav .user-info .carts-products.hidden {
+  display: none;
+} */
+@media (max-width: 575px) {
+  header nav .user-info .carts-products {
+    top: 35px;
+  }
+}
+header nav .user-info .carts-products .product {
+  cursor: default;
+  margin-bottom: 10px;
+  user-select: none;
+}
+header nav .user-info .carts-products .product .product-name {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+header nav .user-info .carts-products a {
+  display: block;
+  background-color: #266403;
+  padding: 5px;
+  font-size: 14px;
+  user-select: none;
 }
 /* End header */
 
@@ -205,12 +267,16 @@ form .to-sign {
     flex-direction: column;
   }
 }
+.products .products-container {
+  flex: 1.5;
+}
 .products .products-container .product-item {
   display: flex;
   justify-content: space-between;
   border: 1px solid #ccc;
   height: 140px;
-  margin-bottom: 20px;
+  width: 99%;
+  margin: 20px auto;
 }
 .products .product-item img {
   width: 150px;
@@ -227,20 +293,20 @@ form .to-sign {
   margin: 12px 0;
   line-height: 1.5;
 }
-.products .product-item .add-to-cart {
+.products .product-item .cart-action {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   flex-direction: column;
 }
-.products .add-to-cart button {
+.products .cart-action button {
   border: none;
   background-color: #266403;
   color: #fff;
   padding: 10px;
   cursor: pointer;
 }
-.products .add-to-cart i {
+.products .cart-action i {
   cursor: pointer;
   padding: 5px;
 }
@@ -271,7 +337,7 @@ form .to-sign {
   .products .product-item .product-info p {
     font-size: 14px;
   }
-  .products .add-to-cart button {
+  .products .cart-action button {
     padding: 5px;
   }
 }
