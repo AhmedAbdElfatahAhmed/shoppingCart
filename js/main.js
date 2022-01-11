@@ -114,11 +114,11 @@ searchInput.addEventListener("keyup", () => {
 // search function
 function search(title, products) {
   let serarchedProduct = products.filter(
-    (product) => product.productName === title
+    (product) => product.productName.indexOf(title) !== -1
   );
   drawProductUI(serarchedProduct);
-  
-  if (searchInput.value ==="") {
+
+  if (searchInput.value === "") {
     drawProductUI(products);
   }
 }
