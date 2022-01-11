@@ -6,9 +6,10 @@ const productsContainerElm = document.querySelector(
   ".shopping-cart .products-container"
 );
 let products = JSON.parse(localStorage.getItem("products"));
+let searchInput = document.querySelector(".shopping-cart input[type='search']");
 // invoked function to display product
-(function drawProductUI() {
-  let produceUI = products.map((productItem) => {
+function drawProductUI(theProducts) {
+  let produceUI = theProducts.map((productItem) => {
     return ` <div class="product-item">
     <img src="${productItem.imgUrl}" alt="" />
     <div class="product-info">
@@ -24,8 +25,8 @@ let products = JSON.parse(localStorage.getItem("products"));
     `;
   });
   productsContainerElm.innerHTML = produceUI.join("");
-})();
-
+}
+drawProductUI(products);
 // // to push item name in cart array
 let cartproductsName = [];
 
@@ -104,3 +105,20 @@ function saveProductData(id) {
 }
 
 // bug in line 60
+
+// search by name when key up
+searchInput.addEventListener("keyup", () => {
+  search(searchInput.value, products);
+});
+
+// search function
+function search(title, products) {
+  let serarchedProduct = products.filter(
+    (product) => product.productName === title
+  );
+  drawProductUI(serarchedProduct);
+  
+  if (searchInput.value ==="") {
+    drawProductUI(products);
+  }
+}
