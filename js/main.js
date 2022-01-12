@@ -7,7 +7,7 @@ const productsContainerElm = document.querySelector(
 );
 let products = JSON.parse(localStorage.getItem("products"));
 let searchInput = document.querySelector(".shopping-cart input[type='search']");
-// invoked function to display product
+// function to display product
 function drawProductUI(theProducts) {
   let produceUI = theProducts.map((productItem) => {
     return ` <div class="product-item">
@@ -27,50 +27,46 @@ function drawProductUI(theProducts) {
   productsContainerElm.innerHTML = produceUI.join("");
 }
 drawProductUI(products);
-// // to push item name in cart array
-let cartproductsName = [];
 
-// to check if there items in localStorage
-let cartproductsObj = localStorage.getItem("productInCard")
+//  to push item name in cart array
+let cartproductsName = localStorage.getItem("productInCard")
+  ? JSON.parse(localStorage.getItem("productInCard")).map(
+      (item) => item.productName
+    )
+  : [];
+
+let addedProducts = localStorage.getItem("productInCard")
   ? JSON.parse(localStorage.getItem("productInCard"))
   : [];
 
 //invoked function to keep data in cart menu and number of notification by localStorage
 (function cartMenuData() {
-  if (cartproductsObj) {
-    // console.log(cartproductsObj)
-    cartproductsObj.map((item) => {
+  // to check if there items in localStorage
+  if (addedProducts) {
+    addedProducts.map((item) => {
       cartProductElm.innerHTML += ` <p class="product-name">${item.productName}</p>`;
-
-      // console.log(cartProductElm.children.length);
     });
     badgeElm.style.display = "block";
-    badgeElm.innerHTML += cartproductsObj.length;
+    badgeElm.innerHTML = addedProducts.length;
   }
 })();
 
-// add product to cart and using localStorage
+// add product to cart
 function addToCart(id) {
   if (localStorage.getItem("userName")) {
     let choosenProduct = products.find((product) => product.id === id);
     if (cartproductsName.indexOf(choosenProduct.productName) === -1) {
-      cartproductsName.push(choosenProduct.productName);
-      // console.log(cartproductsName);
-      // console.log(cartProductElm.children.length)
-
-      if (cartProductElm.children.length <= cartproductsObj.length) {
-        cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
-      }
-
-      // console.log(choosenProduct)
+      cartproductsName = [...cartproductsName, choosenProduct.productName];
+      cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
     }
     if (notRepeate(id)) {
-      cartproductsObj = [...cartproductsObj, choosenProduct];
+      addedProducts = [...addedProducts, choosenProduct];
     }
-    localStorage.setItem("productInCard", JSON.stringify(cartproductsObj));
+
+    localStorage.setItem("productInCard", JSON.stringify(addedProducts));
     badgeElm.style.display = "block";
-    badgeElm.innerHTML = cartproductsObj.length;
-    // console.log(cartProductElm.childElementCount)
+    badgeElm.innerHTML = addedProducts.length;
+
   } else {
     location.href = "register.html";
   }
@@ -91,8 +87,7 @@ function openCartMenu() {
 shoppingCartIconElm.addEventListener("click", openCartMenu);
 
 function notRepeate(id) {
-  let productID = cartproductsObj.map((product) => product.id);
-  // console.log(productID);
+  let productID = addedProducts.map((product) => product.id);
   if (productID.indexOf(id) === -1) {
     return true;
   } else {
@@ -104,7 +99,6 @@ function saveProductData(id) {
   localStorage.setItem("productID", id);
 }
 
-// bug in line 60
 
 // search by name when key up
 searchInput.addEventListener("keyup", () => {
