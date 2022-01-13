@@ -163,7 +163,7 @@ header nav .user-info .carts-products a {
 
 .form-content {
   position: relative;
-  background-color: #ccc;
+  background-color: red;
   width: 50%;
   border-radius: 10px;
   -webkit-border-radius: 10px;
