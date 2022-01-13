@@ -278,6 +278,12 @@ form .to-sign {
   width: 99%;
   margin: 20px auto;
 }
+.products .carts-heading,
+.products .favorites-heading {
+  color: green;
+  font-size: 30px;
+  text-align: center;
+}
 /* Start cart products as no product */
 .products-container .no-products {
   color: #fff;
@@ -374,16 +380,15 @@ form .to-sign {
   width: 350px;
   margin: 10px auto;
   box-shadow: 1px 1px 5px #333;
-
 }
 .product-Details .product-info {
   text-align: center;
 }
-.product-Details .product-info h3{
+.product-Details .product-info h3 {
   font-size: 35px;
 }
 
-.product-Details .product-info p{
+.product-Details .product-info p {
   font-size: 25px;
   margin: 2px 0;
 }

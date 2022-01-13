@@ -19,7 +19,7 @@ function drawProductUI(theProducts) {
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>
-      <i class="far fa-heart"></i>
+      <i onclick='addToFavorites(${productItem.id})' class="far fa-heart"></i>
     </div>
     </div>
     `;
@@ -59,14 +59,13 @@ function addToCart(id) {
       cartproductsName = [...cartproductsName, choosenProduct.productName];
       cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
     }
-    if (notRepeate(id)) {
+    if (notRepeateInCard(id)) {
       addedProducts = [...addedProducts, choosenProduct];
     }
 
     localStorage.setItem("productInCard", JSON.stringify(addedProducts));
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
-
   } else {
     location.href = "register.html";
   }
@@ -86,7 +85,7 @@ function openCartMenu() {
 // to open cart menu
 shoppingCartIconElm.addEventListener("click", openCartMenu);
 
-function notRepeate(id) {
+function notRepeateInCard(id) {
   let productID = addedProducts.map((product) => product.id);
   if (productID.indexOf(id) === -1) {
     return true;
@@ -98,7 +97,6 @@ function notRepeate(id) {
 function saveProductData(id) {
   localStorage.setItem("productID", id);
 }
-
 
 // search by name when key up
 searchInput.addEventListener("keyup", () => {
@@ -116,3 +114,53 @@ function search(title, products) {
     drawProductUI(products);
   }
 }
+
+let addedFavoritesProds = localStorage.getItem("favoritesProducts")
+  ? JSON.parse(localStorage.getItem("favoritesProducts"))
+  : [];
+function addToFavorites(id) {
+  if (localStorage.getItem("userName")) {
+    let chossenFavoriteProduct = products.find((item) => item.id === id);
+    if (notRepeateInFavorite(id)) {
+      addedFavoritesProds = [...addedFavoritesProds, chossenFavoriteProduct];
+    }
+    localStorage.setItem(
+      "favoritesProducts",
+      JSON.stringify(addedFavoritesProds)
+    );
+  } else {
+    location.href = "register.html";
+  }
+}
+
+function notRepeateInFavorite(id) {
+  let favoritesProductsID = addedFavoritesProds.map((item) => item.id);
+  if (favoritesProductsID.indexOf(id) === -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const heartIconElms = document.querySelectorAll(".cart-action i");
+
+(function coloredHeart() {
+  heartIconElms.forEach((icon) => {
+    icon.addEventListener("click", (e) => {
+      e.target.className = "fas fa-heart";
+      e.target.style.color = "red";
+    });
+  });
+})();
+
+// invoked function to Save colored Heart In LocalStorage
+(function toSaveColoredHeartInLocalStorage() {
+  addedFavoritesProds.forEach((item) => {
+    heartIconElms.forEach((icon, index) => {
+      if (item.id === index + 1) {
+        icon.className = "fas fa-heart";
+        icon.style.color = "red";
+      }
+    });
+  });
+})();

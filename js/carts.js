@@ -32,7 +32,7 @@ function drawProductInCart(items) {
 
 function removeItemFromCart(id) {
   let products = JSON.parse(productsInCard);
-  let filteredProduct = products.filter((product) => product.id != id);
+  let filteredProduct = products.filter((product) => product.id !== id);
   localStorage.setItem("productInCard", JSON.stringify(filteredProduct));
   drawProductInCart(filteredProduct);
   checkProductsInCartDB();
