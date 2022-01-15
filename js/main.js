@@ -100,7 +100,7 @@ function saveProductData(id) {
 
 // search by name when key up
 searchInput.addEventListener("keyup", () => {
-  search(searchInput.value, products);
+  search(searchInput.value.trim(), products);
 });
 
 // search function
