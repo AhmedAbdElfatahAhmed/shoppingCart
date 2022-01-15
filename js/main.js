@@ -28,13 +28,6 @@ function drawProductUI(theProducts) {
 }
 drawProductUI(products);
 
-//  to push item name in cart array
-let cartproductsName = localStorage.getItem("productInCard")
-  ? JSON.parse(localStorage.getItem("productInCard")).map(
-      (item) => item.productName
-    )
-  : [];
-
 let addedProducts = localStorage.getItem("productInCard")
   ? JSON.parse(localStorage.getItem("productInCard"))
   : [];
@@ -55,7 +48,6 @@ let addedProducts = localStorage.getItem("productInCard")
 function addToCart(id) {
   if (localStorage.getItem("userName")) {
     let choosenProduct = products.find((product) => product.id === id);
-    cartproductsName = [...cartproductsName, choosenProduct.productName];
     cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
     addedProducts = [...addedProducts, choosenProduct];
     localStorage.setItem("productInCard", JSON.stringify(addedProducts));
