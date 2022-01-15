@@ -55,14 +55,9 @@ let addedProducts = localStorage.getItem("productInCard")
 function addToCart(id) {
   if (localStorage.getItem("userName")) {
     let choosenProduct = products.find((product) => product.id === id);
-    if (cartproductsName.indexOf(choosenProduct.productName) === -1) {
-      cartproductsName = [...cartproductsName, choosenProduct.productName];
-      cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
-    }
-    if (notRepeateInCard(id)) {
-      addedProducts = [...addedProducts, choosenProduct];
-    }
-
+    cartproductsName = [...cartproductsName, choosenProduct.productName];
+    cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
+    addedProducts = [...addedProducts, choosenProduct];
     localStorage.setItem("productInCard", JSON.stringify(addedProducts));
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
