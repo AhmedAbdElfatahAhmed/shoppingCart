@@ -37,7 +37,7 @@ let addedProducts = localStorage.getItem("productInCard")
   // to check if there items in localStorage
   if (addedProducts) {
     addedProducts.map((item) => {
-      cartProductElm.innerHTML += ` <p class="product-name">${item.productName}</p>`;
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
     });
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
@@ -48,8 +48,24 @@ let addedProducts = localStorage.getItem("productInCard")
 function addToCart(id) {
   if (localStorage.getItem("userName")) {
     let choosenProduct = products.find((product) => product.id === id);
-    cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
-    addedProducts = [...addedProducts, choosenProduct];
+    let isproductInCart = addedProducts.some(
+      (item) => item.id === choosenProduct.id
+    );
+    if (isproductInCart) {
+      addedProducts = addedProducts.map((item) => {
+        if (item.id === choosenProduct.id) item.quantity += 1;
+        return item;
+      });
+    } else {
+      addedProducts.push(choosenProduct);
+    }
+    cartProductElm.innerHTML = "";
+    addedProducts.forEach((item) => {
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
+    });
+    // if (getUniqueArr(id)) {
+    //   addedProducts = [...addedProducts, choosenProduct];
+    // }
     localStorage.setItem("productInCard", JSON.stringify(addedProducts));
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
@@ -72,14 +88,14 @@ function openCartMenu() {
 // to open cart menu
 shoppingCartIconElm.addEventListener("click", openCartMenu);
 
-function notRepeateInCard(id) {
-  let productID = addedProducts.map((product) => product.id);
-  if (productID.indexOf(id) === -1) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// function getUniqueArr(id) {
+//   let productID = addedProducts.map((product) => product.id);
+//   if (productID.indexOf(id) === -1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 function saveProductData(id) {
   localStorage.setItem("productID", id);

@@ -8,7 +8,8 @@ function checkProductsInCartDB() {
     drawProductInCart(products);
   }
   if (productsContainerElm.children.length === 0) {
-    productsContainerElm.innerHTML = "<p class='no-products'>There Is No Products</p>";
+    productsContainerElm.innerHTML =
+      "<p class='no-products'>There Is No Products</p>";
   }
 }
 checkProductsInCartDB();
@@ -20,6 +21,7 @@ function drawProductInCart(items) {
         <h3>${productItem.productName}</h3>
         <p>${productItem.description}</p>
         <div>size: <span>${productItem.size}</span></div>
+        <div class='quantity'>quantity: <span>${productItem.quantity}</span></div>
       </div>
       <div class="cart-action">
         <button onclick='removeItemFromCart(${productItem.id})'>Remove from Cart</button>
