@@ -33,4 +33,6 @@ let productsDB = [
   },
 ];
 
-localStorage.setItem("products", JSON.stringify(productsDB));
+if (JSON.parse(localStorage.getItem("products")).length < productsDB.length) {
+  localStorage.setItem("products", JSON.stringify(productsDB));
+}

@@ -13,13 +13,19 @@ function drawProductUI(theProducts) {
     return ` <div class="product-item">
     <img src="${productItem.imgUrl}" alt="" />
     <div class="product-info">
-      <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${productItem.productName}</a>
+      <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${
+      productItem.productName
+    }</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>
-      <i onclick='addToFavorites(${productItem.id})' class="far fa-heart"></i>
+      <i style="color:${
+        productItem.liked ? "green" : ""
+      }" onclick='addToFavorites(${productItem.id})' class="${
+      productItem.liked ? "fas fa-heart" : "far fa-heart"
+    }" ></i>
     </div>
     </div>
     `;
@@ -100,7 +106,7 @@ shoppingCartIconElm.addEventListener("click", openCartMenu);
 function saveProductData(id) {
   localStorage.setItem("productID", id);
 }
-
+const heartIconElms = document.querySelectorAll(".cart-action i");
 // search by name when key up
 searchInput.addEventListener("keyup", () => {
   search(searchInput.value, products);
@@ -124,6 +130,10 @@ let addedFavoritesProds = localStorage.getItem("favoritesProducts")
 function addToFavorites(id) {
   if (localStorage.getItem("userName")) {
     let chossenFavoriteProduct = products.find((item) => item.id === id);
+    chossenFavoriteProduct.liked = true;
+    heartIconElms[chossenFavoriteProduct.id - 1].className = "fas fa-heart";
+    heartIconElms[chossenFavoriteProduct.id - 1].style.color = "green";
+    addFavoritesToOriginalProducts(chossenFavoriteProduct, products);
     if (notRepeateInFavorite(id)) {
       addedFavoritesProds = [...addedFavoritesProds, chossenFavoriteProduct];
     }
@@ -145,25 +155,13 @@ function notRepeateInFavorite(id) {
   }
 }
 
-const heartIconElms = document.querySelectorAll(".cart-action i");
-
-(function coloredHeart() {
-  heartIconElms.forEach((icon) => {
-    icon.addEventListener("click", (e) => {
-      e.target.className = "fas fa-heart";
-      e.target.style.color = "red";
-    });
-  });
-})();
-
-// invoked function to Save colored Heart In LocalStorage
-(function toSaveColoredHeartInLocalStorage() {
-  addedFavoritesProds.forEach((item) => {
-    heartIconElms.forEach((icon, index) => {
-      if (item.id === index + 1) {
-        icon.className = "fas fa-heart";
-        icon.style.color = "red";
+function addFavoritesToOriginalProducts(target, arr) {
+  if (target.liked) {
+    arr.map((item) => {
+      if (item.id === target.id) {
+        item.liked = true;
+        localStorage.setItem("products", JSON.stringify(arr));
       }
     });
-  });
-})();
+  }
+}

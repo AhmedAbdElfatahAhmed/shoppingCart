@@ -31,10 +31,16 @@ if (localStorage.getItem("favoritesProducts") != null) {
   drawFavoritesProd();
 }
 function removeFromFavorites(id) {
-  let products = JSON.parse(localStorage.getItem("favoritesProducts"));
-  let filteredItem = products.filter((item) => item.id !== id);
+  let favoritesProducts = JSON.parse(localStorage.getItem("favoritesProducts"));
+  let filteredItem = favoritesProducts.filter((item) => item.id !== id);
   localStorage.setItem("favoritesProducts", JSON.stringify(filteredItem));
+  let allProducts = JSON.parse(localStorage.getItem("products"));
+  allProducts.map((item) => {
+    if (item.id === id) {
+      item.liked = false;
+      localStorage.setItem("products", JSON.stringify(allProducts));
+    }
+  });
+
   drawFavoritesProd(filteredItem);
 }
-
-
