@@ -156,10 +156,11 @@ function notRepeateInFavorite(id) {
 }
 
 function addFavoritesToOriginalProducts(target, arr) {
+  let itemsId = arr.map((item) => item.id);
   if (target.liked) {
-    arr.map((item) => {
-      if (item.id === target.id) {
-        item.liked = true;
+    itemsId.forEach((itemId) => {
+      if (itemId === target.id) {
+        arr[itemId - 1].liked = true;
         localStorage.setItem("products", JSON.stringify(arr));
       }
     });
