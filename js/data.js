@@ -5,6 +5,7 @@ let productsDB = [
     productName: "watch item",
     description: "Lorem ipsum, dolor sit amet consectetur",
     size: "large",
+    quantity: 1,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ let productsDB = [
     productName: "shose item",
     description: "Lorem ipsum, dolor sit amet consectetur",
     size: "medium",
+    quantity: 1,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ let productsDB = [
     productName: "laptop item",
     description: "Lorem ipsum, dolor sit amet consectetur",
     size: "large",
+    quantity: 1,
   },
   {
     id: 4,
@@ -26,7 +29,10 @@ let productsDB = [
     productName: "bag item",
     description: "Lorem ipsum, dolor sit amet consectetur",
     size: "small",
+    quantity: 1,
   },
 ];
 
-localStorage.setItem("products", JSON.stringify(productsDB));
+if (JSON.parse(localStorage.getItem("products")) === null) {
+  localStorage.setItem("products", JSON.stringify(productsDB));
+}

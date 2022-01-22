@@ -13,13 +13,19 @@ function drawProductUI(theProducts) {
     return ` <div class="product-item">
     <img src="${productItem.imgUrl}" alt="" />
     <div class="product-info">
-      <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${productItem.productName}</a>
+      <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${
+      productItem.productName
+    }</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>
-      <i onclick='addToFavorites(${productItem.id})' class="far fa-heart"></i>
+      <i style="color:${
+        productItem.liked ? "green" : ""
+      }" onclick='addToFavorites(${productItem.id})' class="${
+      productItem.liked ? "fas fa-heart" : "far fa-heart"
+    }" ></i>
     </div>
     </div>
     `;
@@ -27,13 +33,6 @@ function drawProductUI(theProducts) {
   productsContainerElm.innerHTML = produceUI.join("");
 }
 drawProductUI(products);
-
-//  to push item name in cart array
-let cartproductsName = localStorage.getItem("productInCard")
-  ? JSON.parse(localStorage.getItem("productInCard")).map(
-      (item) => item.productName
-    )
-  : [];
 
 let addedProducts = localStorage.getItem("productInCard")
   ? JSON.parse(localStorage.getItem("productInCard"))
@@ -44,7 +43,7 @@ let addedProducts = localStorage.getItem("productInCard")
   // to check if there items in localStorage
   if (addedProducts) {
     addedProducts.map((item) => {
-      cartProductElm.innerHTML += ` <p class="product-name">${item.productName}</p>`;
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
     });
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
@@ -55,14 +54,24 @@ let addedProducts = localStorage.getItem("productInCard")
 function addToCart(id) {
   if (localStorage.getItem("userName")) {
     let choosenProduct = products.find((product) => product.id === id);
-    if (cartproductsName.indexOf(choosenProduct.productName) === -1) {
-      cartproductsName = [...cartproductsName, choosenProduct.productName];
-      cartProductElm.innerHTML += ` <p class="product-name">${choosenProduct.productName}</p>`;
+    let isproductInCart = addedProducts.some(
+      (item) => item.id === choosenProduct.id
+    );
+    if (isproductInCart) {
+      addedProducts = addedProducts.map((item) => {
+        if (item.id === choosenProduct.id) item.quantity += 1;
+        return item;
+      });
+    } else {
+      addedProducts.push(choosenProduct);
     }
-    if (notRepeateInCard(id)) {
-      addedProducts = [...addedProducts, choosenProduct];
-    }
-
+    cartProductElm.innerHTML = "";
+    addedProducts.forEach((item) => {
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
+    });
+    // if (getUniqueArr(id)) {
+    //   addedProducts = [...addedProducts, choosenProduct];
+    // }
     localStorage.setItem("productInCard", JSON.stringify(addedProducts));
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
@@ -85,19 +94,19 @@ function openCartMenu() {
 // to open cart menu
 shoppingCartIconElm.addEventListener("click", openCartMenu);
 
-function notRepeateInCard(id) {
-  let productID = addedProducts.map((product) => product.id);
-  if (productID.indexOf(id) === -1) {
-    return true;
-  } else {
-    return false;
-  }
-}
+// function getUniqueArr(id) {
+//   let productID = addedProducts.map((product) => product.id);
+//   if (productID.indexOf(id) === -1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 function saveProductData(id) {
   localStorage.setItem("productID", id);
 }
-
+const heartIconElms = document.querySelectorAll(".cart-action i");
 // search by name when key up
 searchInput.addEventListener("keyup", () => {
   search(searchInput.value.trim(), products);
@@ -121,6 +130,10 @@ let addedFavoritesProds = localStorage.getItem("favoritesProducts")
 function addToFavorites(id) {
   if (localStorage.getItem("userName")) {
     let chossenFavoriteProduct = products.find((item) => item.id === id);
+    chossenFavoriteProduct.liked = true;
+    heartIconElms[chossenFavoriteProduct.id - 1].className = "fas fa-heart";
+    heartIconElms[chossenFavoriteProduct.id - 1].style.color = "green";
+    addFavoritesToOriginalProducts(chossenFavoriteProduct, products);
     if (notRepeateInFavorite(id)) {
       addedFavoritesProds = [...addedFavoritesProds, chossenFavoriteProduct];
     }
@@ -142,25 +155,14 @@ function notRepeateInFavorite(id) {
   }
 }
 
-const heartIconElms = document.querySelectorAll(".cart-action i");
-
-(function coloredHeart() {
-  heartIconElms.forEach((icon) => {
-    icon.addEventListener("click", (e) => {
-      e.target.className = "fas fa-heart";
-      e.target.style.color = "red";
-    });
-  });
-})();
-
-// invoked function to Save colored Heart In LocalStorage
-(function toSaveColoredHeartInLocalStorage() {
-  addedFavoritesProds.forEach((item) => {
-    heartIconElms.forEach((icon, index) => {
-      if (item.id === index + 1) {
-        icon.className = "fas fa-heart";
-        icon.style.color = "red";
+function addFavoritesToOriginalProducts(target, arr) {
+  let itemsId = arr.map((item) => item.id);
+  if (target.liked) {
+    itemsId.forEach((itemId) => {
+      if (itemId === target.id) {
+        arr[itemId - 1].liked = true;
+        localStorage.setItem("products", JSON.stringify(arr));
       }
     });
-  });
-})();
+  }
+}
