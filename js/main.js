@@ -155,6 +155,7 @@ function notRepeateInFavorite(id) {
   }
 }
 
+// to save favorites products in localStorage
 function addFavoritesToOriginalProducts(target, arr) {
   let itemsId = arr.map((item) => item.id);
   if (target.liked) {
