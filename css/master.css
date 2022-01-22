@@ -179,7 +179,7 @@ header nav .user-info .carts-products a {
   font-size: 30px;
   color: #333333;
 }
-form {
+.form-content form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,8 +191,8 @@ form {
   }
 }
 
-form input,
-form button {
+.form-content form input,
+.form-content form button {
   border: none;
   width: 80%;
   padding: 15px 10px;
@@ -203,12 +203,12 @@ form button {
   -o-border-radius: 6px;
   font-family: "Oswald", sans-serif;
 }
-form input {
+.form-content form input {
   margin: 20px 0;
   outline: none;
 }
 
-form button {
+.form-content form button {
   font-size: 25px;
   text-transform: uppercase;
   cursor: pointer;
@@ -219,11 +219,12 @@ form button {
   -o-transition: all 0.5s;
 }
 
-form button:hover {
+
+.form-content form button:hover {
   background-color: #333;
   color: #fff;
 }
-form .to-sign {
+.form-content form .to-sign {
   margin: 20px 0;
   font-size: 20px;
 }
@@ -283,9 +284,8 @@ form .to-sign {
   color: green;
   font-size: 30px;
   text-align: center;
-} 
-.products-container .quantity
-{
+}
+.products-container .quantity {
   margin: 10px 0;
 }
 /* Start cart products as no product */
@@ -400,3 +400,22 @@ form .to-sign {
   font-size: 25px;
 }
 /* End product Details */
+.creat-Product-icon i {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  background-color: #266403;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+}
+.creat-Product-icon i:hover {
+  opacity: 0.8;
+}

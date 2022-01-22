@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/master.css" />
+    <link rel="stylesheet" href="css/createProduct.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <title>Shopping Cart</title>
+    <title>creat Product</title>
   </head>
   <body>
     <header>
@@ -30,46 +31,32 @@
 
             <div class="user-info">
               <a class="user-name" href="#"></a>
-              <a class="favorites-products" href="favorites.html">Favorites</a>
-              <i class="fas fa-shopping-cart">
-                <span class="badge"></span>
-                <div class="carts-products">
-                  <div class="product"></div>
-                  <a href="carts_products.html">view All products</a>
-                </div>
-              </i>
               <a class="log-out" href="register.html">Log Out</a>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    <section class="shopping-cart">
+
+    <section class="creat-product">
       <div class="container">
-        <input type="search" placeholder="Search By name" />
-        <div class="products">
-          <div class="products-container"></div>
-          <div class="products-filter">
-            <h3>Filter By Size:</h3>
-            <select>
-              <option value="all" hidden>Filter By Size</option>
-              <option value="all">All</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-        </div>
+        <form action="">
+          <input type="file" />
+          <input type="text" placeholder="product Name" />
+          <textarea placeholder="product Description" rows="5"></textarea>
+          <select>
+            <option value="" hidden>Select size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+          <button type="submit">Create</button>
+        </form>
       </div>
     </section>
 
-    <div class="creat-Product-icon">
-      <a title="create new product" href="createProduct.html">
-        <i class="fa fa-plus"></i
-      ></a>
-    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/user.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/createProduct.js"></script>
   </body>
 </html>
