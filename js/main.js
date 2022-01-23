@@ -21,7 +21,11 @@ function drawProductUI(theProducts) {
     }</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
-      ${productItem.byUser && "<button class='edit-product-info'>Edit</button>"}
+      ${
+        productItem.byUser
+          ? "<button class='edit-product-info'>Edit</button>"
+          : ""
+      }
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>
