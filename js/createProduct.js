@@ -33,6 +33,7 @@ function creatNewProduct(e) {
       description: productDescElm.value,
       size: productSize,
       quantity: 1,
+      byUser: true,
     };
     allProducts.push(newProduct);
     localStorage.setItem("products", JSON.stringify(allProducts));
@@ -66,6 +67,7 @@ function uploadImage() {
       timer: 2500,
       buttons: false,
     });
+    inputFile.value = "";
     return;
   }
   getImageBase64(chossenFile);

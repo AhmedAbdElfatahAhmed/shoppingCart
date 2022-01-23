@@ -7,6 +7,7 @@ let productsDB = [
       "A watch is a small clock carried or worn by a person. It makes it easy to see the time",
     size: "small",
     quantity: 1,
+    byUser:false,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ let productsDB = [
       "A shoe is an item of footwear intended to protect and comfort the human foot.",
     size: "large",
     quantity: 1,
+    byUser:false,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ let productsDB = [
       "Laptops are computers that you can take everywhere with you without hassle.",
     size: "medium",
     quantity: 1,
+    byUser:false,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ let productsDB = [
       "A bag is a kind of soft container. It can hold or carry things.",
     size: "small",
     quantity: 1,
+    byUser:false,
   },
 ];
 

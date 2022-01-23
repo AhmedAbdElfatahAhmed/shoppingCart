@@ -13,7 +13,7 @@ let FilterBySizeElm = document.querySelector(
 // function to display product
 function drawProductUI(theProducts) {
   let produceUI = theProducts.map((productItem) => {
-    return ` <div class="product-item">
+    return ` <div class="product-item ${productItem.byUser && "new-product"}">
     <img src="${productItem.imgUrl}" alt="" />
     <div class="product-info">
       <a href='cartDetalis.html'onclick='saveProductData(${productItem.id})'>${
@@ -21,6 +21,7 @@ function drawProductUI(theProducts) {
     }</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
+      ${productItem.byUser && "<button class='edit-product-info'>Edit</button>"}
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>

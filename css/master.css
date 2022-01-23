@@ -219,7 +219,6 @@ header nav .user-info .carts-products a {
   -o-transition: all 0.5s;
 }
 
-
 .form-content form button:hover {
   background-color: #333;
   color: #fff;
@@ -275,9 +274,26 @@ header nav .user-info .carts-products a {
   display: flex;
   justify-content: space-between;
   border: 1px solid #ccc;
-  height: 155px;
+  height: 165px;
   width: 99%;
   margin: 20px auto;
+}
+.products-container .product-item.new-product {
+  border: 1px solid green;
+}
+.products-container .product-item .edit-product-info {
+  padding: 8px 20px;
+  color: #fff;
+  background-color: yellowgreen;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .products .carts-heading,
 .products .favorites-heading {
