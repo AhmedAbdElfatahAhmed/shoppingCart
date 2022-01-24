@@ -23,7 +23,9 @@ function drawProductUI(theProducts) {
       <div>size: <span>${productItem.size}</span></div>
       ${
         productItem.byUser
-          ? "<button class='edit-product-info'>Edit</button>"
+          ? "<button onclick='editProduct(" +
+            productItem.id +
+            ")' class='edit-product-info'>Edit</button>"
           : ""
       }
     </div>
@@ -190,4 +192,9 @@ function getProductsFilterBySize() {
     );
     drawProductUI(selectedProduct);
   }
+}
+
+function editProduct(id) {
+  location.href = "updateProducts.html";
+  localStorage.setItem("editProductID", id);
 }
