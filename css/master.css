@@ -129,7 +129,7 @@ header nav .user-info .carts-products {
   text-align: center;
   color: #fff;
   width: 170px;
-  border: 1px solid #fff;
+  border: 1px solid #555;
   background-color: #333;
   display: none;
 }
@@ -149,6 +149,20 @@ header nav .user-info .carts-products .product {
 header nav .user-info .carts-products .product .product-name {
   margin-bottom: 10px;
   font-size: 18px;
+}
+.product .product-name span.item-quantity {
+  display: inline-block;
+  background-color: #777;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+  margin: 5px 5px 0 0;
 }
 header nav .user-info .carts-products a {
   display: block;
@@ -278,10 +292,16 @@ header nav .user-info .carts-products a {
   width: 99%;
   margin: 20px auto;
 }
+
 .products-container .product-item.new-product {
-  border: 1px solid green;
+  border: 2px solid green;
 }
-.products-container .product-item .edit-product-info {
+.products-container .product-item .edit-delete-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.products-container .product-item .edit-product-info,
+.products-container .product-item .delete-product-info {
   padding: 8px 20px;
   color: #fff;
   background-color: yellowgreen;
@@ -294,6 +314,12 @@ header nav .user-info .carts-products a {
   font-weight: bold;
   margin-top: 10px;
   cursor: pointer;
+}
+.products-container .product-item .edit-product-info {
+  background-color: yellowgreen;
+}
+.products-container .product-item .delete-product-info {
+  background-color: #dc3545;
 }
 .products .carts-heading,
 .products .favorites-heading {

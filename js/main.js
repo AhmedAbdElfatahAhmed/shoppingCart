@@ -21,13 +21,21 @@ function drawProductUI(theProducts) {
     }</a>
       <p>${productItem.description}</p>
       <div>size: <span>${productItem.size}</span></div>
-      ${
-        productItem.byUser
-          ? "<button onclick='editProduct(" +
-            productItem.id +
-            ")' class='edit-product-info'>Edit</button>"
-          : ""
-      }
+     <div class="edit-delete-buttons"> ${
+       productItem.byUser
+         ? "<button onclick='editProduct(" +
+           productItem.id +
+           ")' class='edit-product-info'>Edit</button>"
+         : ""
+     }
+     ${
+       productItem.byUser
+         ? "<button onclick='deleteProduct(" +
+           productItem.id +
+           ")' class='delete-product-info'>Delete</button>"
+         : ""
+     }
+     </div>
     </div>
     <div class="cart-action">
       <button onclick='addToCart(${productItem.id})'>Add To Cart</button>
@@ -53,7 +61,7 @@ let addedProducts = localStorage.getItem("productInCard")
   // to check if there items in localStorage
   if (addedProducts) {
     addedProducts.map((item) => {
-      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} <span class="item-quantity">${item.quantity}</span></p>`;
     });
     badgeElm.style.display = "block";
     badgeElm.innerHTML = addedProducts.length;
@@ -77,7 +85,7 @@ function addToCart(id) {
     }
     cartProductElm.innerHTML = "";
     addedProducts.forEach((item) => {
-      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} ${item.quantity}</p>`;
+      cartProductElm.innerHTML += ` <p class="product-name">${item.productName} <span class="item-quantity">${item.quantity}</span></p>`;
     });
     // if (getUniqueArr(id)) {
     //   addedProducts = [...addedProducts, choosenProduct];
@@ -187,7 +195,7 @@ function getProductsFilterBySize() {
     drawProductUI(products);
     location.reload();
   } else {
-    selectedProduct = products.filter(
+    let selectedProduct = products.filter(
       (item) => item.size === FilterBySizeElm.value
     );
     drawProductUI(selectedProduct);
@@ -197,4 +205,25 @@ function getProductsFilterBySize() {
 function editProduct(id) {
   location.href = "updateProducts.html";
   localStorage.setItem("editProductID", id);
+}
+
+function deleteProduct(id) {
+  let targetProduct = products.find((item) => item.id === id);
+  let targetProductIndex = products.indexOf(targetProduct);
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      products.splice(targetProductIndex, 1);
+      localStorage.setItem("products", JSON.stringify(products));
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      location.reload();
+    }
+  });
 }
