@@ -40,9 +40,12 @@ function creatNewProduct(e) {
     swal("success!", {
       title: `${productNameEl.value} item was added`,
       icon: "success",
-      timer: 2500,
+      timer: 2000,
       buttons: false,
     });
+    setTimeout(() => {
+      location.href = "index.html";
+    }, 2100);
   } else {
     swal("warning!", {
       title: "You must fill all inputs",
@@ -51,10 +54,6 @@ function creatNewProduct(e) {
       buttons: false,
     });
   }
-  inputFile.value = "";
-  productNameEl.value = "";
-  productDescElm.value = "";
-  productSizeElm.value = "";
 }
 
 function uploadImage() {
