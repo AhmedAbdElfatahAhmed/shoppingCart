@@ -1,4 +1,3 @@
-export
 // declar variables
 const inputFile = document.querySelector(".creat-product input[type=file]");
 const productNameEl = document.querySelector(".creat-product input[type=text]");

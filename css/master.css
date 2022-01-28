@@ -91,6 +91,15 @@ header nav .user-info {
   align-items: center;
   gap: 20px;
 }
+header nav .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
 header nav .sign a,
 header nav .user-info a {
   color: #fff;

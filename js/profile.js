@@ -1,15 +1,15 @@
-let userImg = document.querySelector(".profile img");
+let userImgProfile = document.querySelector(".profile img");
 let userName = document.querySelector(".profile .user-name span");
 let userEmail = document.querySelector(".profile .user-email span");
 let productsQuantity = document.querySelector(".profile .quantity span");
-let getUserImgFromLocalStorage = localStorage.getItem("userImg");
+let getuserImgProfileFromLocalStorage = localStorage.getItem("userImg");
 let getUserNameFromLocalStorage = localStorage.getItem("userName");
 let getUserEmailFromLocalStorage = localStorage.getItem("email");
-userImg.src = getUserImgFromLocalStorage;
-if (getUserImgFromLocalStorage) {
-  userImg.src = getUserImgFromLocalStorage;
+userImgProfile.src = getuserImgProfileFromLocalStorage;
+if (getuserImgProfileFromLocalStorage) {
+  userImgProfile.src = getuserImgProfileFromLocalStorage;
 } else {
-  userImg.src = "images/user_avatar.jpg";
+  userImgProfile.src = "images/user_avatar.jpg";
 }
 userName.innerHTML = getUserNameFromLocalStorage;
 userEmail.innerHTML = getUserEmailFromLocalStorage;
