@@ -4,8 +4,8 @@ const inputNameEl = document.querySelector(".edit-profile input[type=text]");
 const inputEmailElm = document.querySelector(".edit-profile input[type=email]");
 const submitBtnElm = document.querySelector(".edit-profile button");
 let userImage;
-let getUserNameFromLocalStorage = JSON.parse(localStorage.getItem("userName"));
-let getUserEmailFromLocalStorage = JSON.parse(localStorage.getItem("email"));
+let getUserNameFromLocalStorage = localStorage.getItem("userName");
+let getUserEmailFromLocalStorage = localStorage.getItem("email");
 inputNameEl.value = getUserNameFromLocalStorage;
 inputEmailElm.value = getUserEmailFromLocalStorage;
 
@@ -17,9 +17,9 @@ inputFile.addEventListener("change", uploadImage);
 function editProfileInfo(e) {
   e.preventDefault();
   if (inputFile.value && inputNameEl.value && inputEmailElm.value) {
-    localStorage.setItem("userImg", JSON.stringify(userImage));
-    localStorage.setItem("userName", JSON.stringify(inputNameEl.value));
-    localStorage.setItem("email", JSON.stringify(inputEmailElm.value));
+    localStorage.setItem("userImg", userImage);
+    localStorage.setItem("userName", inputNameEl.value);
+    localStorage.setItem("email", inputEmailElm.value);
 
     swal("success!", {
       title: `Your profile edit successfully`,

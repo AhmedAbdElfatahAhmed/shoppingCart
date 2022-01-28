@@ -7,7 +7,7 @@ const logoutLink = document.querySelector("nav .user-info .log-out");
 if (localStorage.getItem("userName")) {
   sign.remove();
   userLogout.style.display = "flex";
-  userNameLogin.innerHTML = JSON.parse(localStorage.getItem("userName"));
+  userNameLogin.innerHTML = localStorage.getItem("userName");
 }
 
 logoutLink.addEventListener("click", () => {
